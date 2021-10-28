@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+
 import LineChart from '../../shared/LineChart/LineChart'
 import AppContainer from '../AppContainer/AppContainer'
 import AppHeader from '../AppHeader/AppHeader'
@@ -32,13 +32,13 @@ export default function App() {
                     left={
                         <ShoppingList
                             title="Produtos disponíveis"
-                            products={products}
+
                             onToggle={handleToggle}
                         />}
                     middle={
                         <ShoppingList
                             title="Sua lista de compras"
-                            products={selectedProducts}
+                            displayOnlySelected
                             onToggle={handleToggle}
                         />}
                     right={

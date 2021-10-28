@@ -1,11 +1,14 @@
 
-//import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Checkbox from "../../shared/Checkbox/Checkbox";
-//import { selectAllProducts } from "../../store/Products/Products.selectors";
+import { selectAllProducts, selectSelectedProducts } from "../../store/Products/Products.selectors";
 import { Array, Title, Wrapper } from "./ShoppingList.styles";
 
-export default function ShoppingList({ title, products, onToggle }) {
-    //const productsFromRedux = useSelector(selectAllProducts);
+export default function ShoppingList({ title, onToggle, displayOnlySelected }) {
+    const products = useSelector(displayOnlySelected
+        ? selectSelectedProducts
+        : selectAllProducts
+    );
 
 
 
