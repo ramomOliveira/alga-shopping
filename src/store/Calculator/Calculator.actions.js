@@ -4,3 +4,10 @@ export function sum(a, b) {
         payload: [a, b]
     }
 }
+
+export function subract(a, b) {
+    return {
+        type: 'SUBTACT',
+        payload: [a, b]
+    }
+}

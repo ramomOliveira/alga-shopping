@@ -4,44 +4,23 @@ import AppContainer from '../AppContainer/AppContainer'
 import AppHeader from '../AppHeader/AppHeader'
 import ShoppingList from '../ShoppingList/ShoppingList'
 import { Container, Wrapper } from './App.styles'
-import productsMock from '../../mocks/products.json'
+
 import extractPercentage from '../../utils/extractPercentage'
+import Calculator from '../Calculator'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectAllProducts, selectSelectedProducts, selectSelectedProductTotalPrice } from '../../store/Products/Products.selectors'
+import { toggleProduct } from '../../store/Products/Products.actions'
 
 export default function App() {
+    const dispatch = useDispatch();
     const colors = ['#62cbc6', '#00abad', '#00858c', '#006073', '#004d61'];
 
-    const [products, setProducts] = useState(productsMock.products);
-    const [selectedProducts, setSelectedProducts] = useState([]);
-    const [totalPrice, setTotalPrice] = useState(0);
+    const products = useSelector(selectAllProducts);
+    const selectedProducts = useSelector(selectSelectedProducts)
+    const totalPrice = useSelector(selectSelectedProductTotalPrice)
 
-    useEffect(() => {
-        const newSelectedProducts = products.filter(product => product.checked === true)
-        setSelectedProducts(newSelectedProducts)
-    }, [products])
-
-    useEffect(() => {
-        const total = selectedProducts.map(product => product.price).reduce((a, b) => a + b, 0)
-        setTotalPrice(total)
-    }, [selectedProducts])
-
-
-    function handleToggle(id, checked) {
-        const newProducts = products.map(product =>
-            product.id === id
-                ? { ...product, checked: !product.checked }
-                : product
-        )
-        /*const newProducts = products.map(product => {
-            if (product.id === id) {
-                return {
-                    ...product,
-                    checked: !product.checked
-                }
-            } else {
-                return product
-            }
-        })*/
-        setProducts(newProducts)
+    function handleToggle(id) {
+        dispatch(toggleProduct(id))
 
     }
 
@@ -109,6 +88,9 @@ export default function App() {
                                         currency: 'BRL'
                                     })}
                                 </div>
+
+                                <Calculator />
+
                             </div>
                         </div>
                     }
