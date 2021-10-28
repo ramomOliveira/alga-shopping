@@ -6,7 +6,7 @@ import ShoppingList from '../ShoppingList/ShoppingList'
 import { Container, Wrapper } from './App.styles'
 
 import extractPercentage from '../../utils/extractPercentage'
-import Calculator from '../Calculator'
+//import Calculator from '../Calculator'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectAllProducts, selectSelectedProducts, selectSelectedProductTotalPrice } from '../../store/Products/Products.selectors'
 import { toggleProduct } from '../../store/Products/Products.actions'
@@ -32,7 +32,7 @@ export default function App() {
                     left={
                         <ShoppingList
                             title="Produtos disponíveis"
-
+                            products={products}
                             onToggle={handleToggle}
                         />}
                     middle={
@@ -89,7 +89,7 @@ export default function App() {
                                     })}
                                 </div>
 
-                                <Calculator />
+
 
                             </div>
                         </div>
